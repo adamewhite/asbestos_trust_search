@@ -1,6 +1,6 @@
 class SitesController < ApplicationController
 
-	# before_action :confirm_logged_in
+	before_action :confirm_logged_in
 	before_action :find_site, only: [:update, :destroy]
 
 	def index

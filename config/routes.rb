@@ -2,7 +2,13 @@ Rails.application.routes.draw do
   resources :sites
   resources :trusts
   resources :users
-  resources :burgers
+  
+  get 'admin', :to => 'access#menu'
+  get 'access/menu'
+  get 'access/login'
+  match 'access/attempt_login' => 'access#attempt_login', via: [:get, :post]
+  get 'access/logout'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
