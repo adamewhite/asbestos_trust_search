@@ -1,74 +1,84 @@
 class SitesController < ApplicationController
-  before_action :set_site, only: [:show, :edit, :update, :destroy]
 
-  # GET /sites
-  # GET /sites.json
-  def index
-    @sites = Site.all
-  end
+	before_action :confirm_logged_in
+	before_action :find_site, only: [:update, :destroy]
 
-  # GET /sites/1
-  # GET /sites/1.json
-  def show
-  end
+	def index
 
-  # GET /sites/new
-  def new
-    @site = Site.new
-  end
+		# search filters
 
-  # GET /sites/1/edit
-  def edit
-  end
+		@sites = Site.all
+		@sites = @sites.keyword_search(params[:keyword]) if params[:keyword].present?
+		@sites = @sites.name_search(params[:name]) if params[:name].present?
+		@sites = @sites.city_search(params[:city]) if params[:city].present?
+		@sites = @sites.state_search(params[:state]) if params[:state].present?
+		@sites = @sites.country_search(params[:country]) if params[:country].present?
 
-  # POST /sites
-  # POST /sites.json
-  def create
-    @site = Site.new(site_params)
+		# date objects
 
-    respond_to do |format|
-      if @site.save
-        format.html { redirect_to @site, notice: 'Site was successfully created.' }
-        format.json { render :show, status: :created, location: @site }
-      else
-        format.html { render :new }
-        format.json { render json: @site.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+		dateToObj = Date.parse(params[:date_to]) if params[:date_to].present?
+		dateFromObj = Date.parse(params[:date_from]) if params[:date_from].present?
 
-  # PATCH/PUT /sites/1
-  # PATCH/PUT /sites/1.json
-  def update
-    respond_to do |format|
-      if @site.update(site_params)
-        format.html { redirect_to @site, notice: 'Site was successfully updated.' }
-        format.json { render :show, status: :ok, location: @site }
-      else
-        format.html { render :edit }
-        format.json { render json: @site.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+		# date filters
 
-  # DELETE /sites/1
-  # DELETE /sites/1.json
-  def destroy
-    @site.destroy
-    respond_to do |format|
-      format.html { redirect_to sites_url, notice: 'Site was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+		if dateToObj.nil? === false or dateFromObj.nil? === false
+			@sites = @sites.date_search(dateFromObj, dateToObj)
+		end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_site
-      @site = Site.find(params[:id])
-    end
+		#sort filters
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def site_params
-      params.require(:site).permit(:trust_id, :name, :city, :state, :country, :start_date, :end_date, :site_code)
-    end
+		if params[:sortCriterion].present?
+			if true?(params[:reverseOrder])
+				@paginatedSites = @sites.order("#{params[:sortCriterion]} DESC, name ASC").page(params[:page]).per(5)
+			else
+				@paginatedSites = @sites.order("#{params[:sortCriterion]} ASC, name ASC").page(params[:page]).per(5)
+			end
+		else
+			@paginatedSites = @sites.order('trust_id ASC, name ASC').page(params[:page]).per(5)
+		end
+
+		# complete datasets
+
+		@allSites = @sites
+		@allTrusts = Trust.all
+	    
+	end
+
+	def create
+		@site = Site.new(site_params)
+
+		if @site.save
+			render json: @site
+		else
+			render json: @site.errors, status: :unprocessable_entity
+		end
+	end
+
+	def update
+		if @site.update_attributes(site_params)
+			render json: @site
+		else
+			render json: @site.errors, status: :unprocessable_entity
+		end
+	end
+
+	def destroy
+		@site.destroy
+		render json: @site
+	end
+
+	private
+
+	def find_site
+		@site = Site.find(params[:id])
+	end
+
+	def site_params
+		params.require(:site).permit(:name, :city, :state, :country, :start_date, :end_date, :trust_id, :trust, :site_code)
+	end
+
+
+	def true?(obj)
+  		obj.to_s == "true"
+	end
 end

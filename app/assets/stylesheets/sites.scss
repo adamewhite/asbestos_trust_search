@@ -1,3 +1,245 @@
 // Place all the styles related to the Sites controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+/* font imports */
+
+
+@font-face{ 
+	font-family: 'stellar-regular';
+	src: url('Stellar-Regular.otf');
+}
+
+@font-face{ 
+	font-family: 'somatic-rounded';
+	src: url('Somatic-Rounded.otf');
+}
+
+
+/* selector styles */
+
+
+* {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	font-family:'stellar-regular', helvetica, sans-serif;
+	font-size: 102%;
+}
+
+body {
+    background: $pale-blue no-repeat center center fixed; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient($ocean-blue, $pale-blue); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient($ocean-blue, $pale-blue); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient($ocean-blue, $pale-blue); /* For Firefox 3.6 to 15 */
+    background: linear-gradient($ocean-blue, $pale-blue); /* Standard syntax */
+    height: 100%;
+    margin: auto;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    border-color: transparent !important;
+}
+
+img {
+	width: 30px;
+	margin: -5px 5px 0px 10px;
+}
+
+select {
+  border-radius: 0;
+  -webkit-appearance: none;
+  height: 15px;
+}
+
+label {
+	margin: 10px 0px 5px 0px;
+}
+
+td input {
+	width: 100px;
+}
+
+thead th, tbody td {
+	font-size: 80%;
+	text-align: center;
+}
+
+input[type="button"], .button {
+    outline: none; /* overrides chrome default focus outline */
+}
+
+
+/* class styles */
+
+
+.nav-styling {
+	background-color: $bold-blue;
+	vertical-align: bottom;
+	a, ul, li {
+		color: #FFF !important;
+		font-family: 'somatic-rounded', sans-serif;
+	}
+}
+
+.login td {
+	font-size: 30px;
+	padding: 5px;	
+}
+
+.login input {
+ 	width: 200px;
+}
+
+.login input[type="submit"] {
+  	font-size: 15px;
+ 	width: 75px;
+}
+
+.notice {
+	font-size: 105%;
+}
+
+.test {
+	background: red;
+}
+
+.asbestos-title {
+	display: inline-block;
+	vertical-align: baseline !important;
+}
+
+.date-group {
+	margin: 15px ;
+}
+
+.border-white {
+	border-color: transparent !important;
+}
+
+.input-group {
+	width: 100%;
+	margin: auto;
+	border-spacing: 0 5px;
+
+}
+
+.input-group-addon {
+	width: 70px !important;
+	border-radius: 5px;
+}
+
+.dropdown-menu-background {
+	background: lighten($ocean-blue, 12%);
+}
+
+.date-selector-title {
+	width: 90px !important;
+}
+
+.not-visible {
+	display: none;
+}
+
+.visible-hidden {
+	visibility: hidden;
+}
+
+.shift-right {
+	text-align: right;
+}
+
+.advanced-search-buttons {
+	padding: 10px 10px 5px 0 !important;
+}
+
+.advanced-search-button {
+	border-radius: 5px 0 0 5px !important;
+}
+
+.reset-button {
+	border-radius: 0 5px 5px 0 !important;
+}
+
+.menu-bar {
+	font-size: 165%;
+} 
+
+.my-account {
+	font-family: 'stellar-light' !important;
+	font-size: 125%;
+	margin: -3px 0px 0px 0px;
+}
+
+.state-country-select-inline {
+	margin: 15px;
+}
+
+.faded {
+	color: rgba(0, 0, 0, 0.3);
+}
+
+.search-box-padding {
+	padding: 0 5px;
+}
+
+.panel-padding {
+	padding: 0px;
+}
+
+.search-panel-padding {
+	padding: 10px 10px;
+}
+
+.collapse-button {
+	margin: 10px;
+}
+
+.search_box {
+	width: 100%;
+	padding: 10px;
+	border-radius: 0 0 5px 5px;
+	background: white;
+}
+
+.asbestos-title img {
+	text-height: 80%;
+	float: left;
+	display: inline;
+}
+
+
+/* table colors */
+
+
+.mint-cream {
+	background: $mint-cream;
+}
+
+.azure {
+	background: $azure;
+}
+
+.alice-blue {
+	background: $alice-blue;
+}
+
+.lavender{
+	background: $lavender;
+}
+
+.lavender-blush {
+	background: $lavender-blush;
+}
+
+.misty-rose {
+	background: $misty-rose;
+}
+
+.honeydew {
+	background: $honeydew;
+}
+
+.light-yellow {
+	background: $light-yellow;
+}
