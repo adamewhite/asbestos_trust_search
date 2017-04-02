@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @trust.name %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @trust.location %>
+</p>
+
+<%= link_to 'Edit', edit_trust_path(@trust) %> |
+<%= link_to 'Back', trusts_path %>

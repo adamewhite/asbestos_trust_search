@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Trust:</strong>
+  <%= @site.trust_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @site.name %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @site.city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @site.state %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @site.country %>
+</p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @site.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @site.end_date %>
+</p>
+
+<p>
+  <strong>Site code:</strong>
+  <%= @site.site_code %>
+</p>
+
+<%= link_to 'Edit', edit_site_path(@site) %> |
+<%= link_to 'Back', sites_path %>
