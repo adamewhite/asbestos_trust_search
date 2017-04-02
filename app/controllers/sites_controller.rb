@@ -37,11 +37,16 @@ class SitesController < ApplicationController
 			@paginatedSites = @sites.order('trust_id ASC, name ASC').page(params[:page]).per(5)
 		end
 
-		# complete datasets
+		# all trusts
 
-		@allSites = @sites
 		@allTrusts = Trust.all
-	    
+
+	    # eligible trusts
+
+		site_ids = @sites.map{|site| site.trust_id}
+		unique_site_ids = site_ids.uniq
+		@eligibleTrusts = @allTrusts.select{|trust| unique_site_ids.include? trust.id}
+
 	end
 
 	def create
