@@ -29,6 +29,7 @@
 }
 
 body {
+	padding-bottom: 50px;
     background: $pale-blue no-repeat center center fixed; /* For browsers that do not support gradients */
     background: -webkit-linear-gradient($ocean-blue, $pale-blue); /* For Safari 5.1 to 6.0 */
     background: -o-linear-gradient($ocean-blue, $pale-blue); /* For Opera 11.1 to 12.0 */
