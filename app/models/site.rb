@@ -1,4 +1,4 @@
-Ïclass Site < ActiveRecord::Base
+class Site < ActiveRecord::Base
 
 	before_create :set_dates
 	belongs_to :trust
